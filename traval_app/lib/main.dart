@@ -88,14 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("Travel Place List"),
       ),
       body: Center(
-        child: Container (
-            width: 200,
-            height: 200,
-            color: Colors.amber,
-            child: Text("Hello Mantosh"),
-      )
-
-
+        child: Container(child: Image.asset("assets/Images/image1.jpeg"))
 
       ),
       floatingActionButton: FloatingActionButton(
