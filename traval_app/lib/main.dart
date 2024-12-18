@@ -14,21 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Travel Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
+
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
@@ -39,18 +25,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -59,23 +34,35 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+    var myPlaceArr = ["Ranchi", "Delhi", "Bangalore", "Mumbai", "Chennai", "Ranchi", "Delhi", "Bangalore", "Mumbai", "Odisa"];
+
     return Scaffold(
       appBar: AppBar(
 
         title: Text("Travel Place List"),
       ),
-      body: Center(
-        child: InkWell(
-          onTap: () {
-            print("view tapped");
+      body:ListView.separated(itemBuilder: (context,index) {
+
+         return ListTile(
+           leading: Container(
+             width: 50,
+             height: 100,
+               child: CircleAvatar(
+                  backgroundImage: AssetImage("assets/Images/image1.jpeg"),
+               )
+               //Image.asset("assets/Images/image1.jpeg"),
+           ),
+           title: Text(myPlaceArr[index]),
+           subtitle: Text("Place name"),
+           trailing: Icon(Icons.add),
+         );
+            },
+          itemCount: myPlaceArr.length,
+          separatorBuilder: (context, index) {
+          return Divider(height: 50, thickness: 1,);
           },
-          child: Container(
-            width: 200,
-            height: 200,
-            color: Colors.red,
-          ),
         ),
-      )
-    );
+      );
   }
 }
